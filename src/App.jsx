@@ -1,10 +1,10 @@
 import "./App.css";
-import MenuMobile from "./common/MenuMobile";
+import Initial from "./pages/Initial";
 
 function App() {
   return (
     <>
-      <MenuMobile />
+      <Initial />
     </>
   );
 }
