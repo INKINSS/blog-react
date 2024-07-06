@@ -7,8 +7,9 @@ import Discover from "../components/Discover";
 
 const Initial = () => {
   return (
-    <main className="mt-2">
-      <MenuMobile />
+    <>
+    <MenuMobile />
+    <main className="mt-20">
       <section className="pb-10 px-5">
         <Logo />
         <p className="text-center text-grayLight">
@@ -26,6 +27,7 @@ const Initial = () => {
         <Discover />
       </section>
     </main>
+    </>
   );
 };
 
