@@ -2,24 +2,23 @@ import MenuMobile from "../common/MenuMobile";
 import Logo from "../common/Logo";
 import Search from "../common/Search";
 import { useEffect, useState } from "react";
-import FetchData from "../services/FetchData";
+import { useNavigate } from "react-router-dom";
+import useFetchData from "../hooks/useFetchData";
 
 const Blog = () => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+  const { data, error } = useFetchData("http://localhost:3000"); // Llamamos a useFetchData directamente
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await FetchData();
-        setData(result);
-      } catch (error) {
-        setError(error);
-      }
-    };
+    if (data) {
+      setLoading(false);
+    }
+  }, [data]);
 
-    fetchData();
-  }, []);
+  const handleArticleClick = (id) => {
+    navigate(`/article/${id}`);
+  };
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -31,17 +30,40 @@ const Blog = () => {
       <main className="mt-20">
         <Logo />
         <Search />
-        <h2>artículos recientes</h2>
-        <article>
-          {data ? (
-            data.map((item) => (
-              <section key={item.title}>
-                <h3>{item.title}</h3>
-              </section>
-            ))
-          ) : (
-            <p>Cargando...</p> // Mensaje o componente de carga
-          )}
+        <article className="px-10">
+          <h2 className="text-primary font-semibold text-[1.2rem]">
+            Artículos recientes
+          </h2>
+          <article className="w-full">
+            {loading ? (
+              <p>Cargando...</p>
+            ) : (
+              data.map((item) => (
+                <article
+                  className="max-w-[13rem] min-h-[20rem] shadow-card rounded-lg py-6 px-5 mt-10"
+                  key={item.id}
+                  onClick={() => handleArticleClick(item.id)}
+                >
+                  <h3 className="font-bold text-[1.5rem]">{item.title}</h3>
+                  <p className="text-grayLight font-normal mt-1 mb-3">
+                    {item.description}
+                  </p>
+                  <section className="w-full flex gap-2 flex-wrap">
+                    {data.map((item) =>
+                      item.tags.map((tag, index) => (
+                        <span
+                          className="text-sm block border border-grayExtraLight rounded-full px-3"
+                          key={`${item.id}-${index}`}
+                        >
+                          {tag}
+                        </span>
+                      ))
+                    )}
+                  </section>
+                </article>
+              ))
+            )}
+          </article>
         </article>
       </main>
     </>
