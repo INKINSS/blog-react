@@ -4,7 +4,7 @@ const Discover = () => {
   return (
     <section className="py-5 px-5">
       <h3 className="text-primary text-[1.5rem] font-semibold mb-4">
-        Descubre
+        Descubrir
       </h3>
       <p className="text-grayLight text-center">
         Descubre temas de tu interés explorando filtros y categorías que
