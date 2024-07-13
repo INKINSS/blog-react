@@ -9,10 +9,14 @@ export default {
       colors: {
         primary: 'hsl(194,53,12)',
         grayExtraLight: 'hsl(0,0,80)',
-        grayLight: 'hsl(0,0,40)'
+        grayLight: 'hsl(0,0,40)',
+      },
+      screens: {
+        ssm: '350px'
       },
       boxShadow: {
-        'card': '0 0 30px 2px rgba(0, 0, 0, 0.2)'
+        'card': '0 0 30px 2px rgba(0, 0, 0, 0.2)',
+        'hoverCard': '0 0 30px 2px rgba(14, 39, 47, 0.7)'
       }
     },
   },

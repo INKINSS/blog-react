@@ -1,8 +1,13 @@
+import { Link } from "react-router-dom";
+
 const Logo = () => {
   return (
-    <h1 className="text-primary text-[2rem] font-bold text-center">
+    <Link
+      to={"/"}
+      className="text-primary block mt-8 mb-4 text-[2rem] font-bold text-center"
+    >
       llcomment
-    </h1>
+    </Link>
   );
 };
 
