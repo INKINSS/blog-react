@@ -4,7 +4,7 @@ const Logo = () => {
   return (
     <Link
       to={"/"}
-      className="text-primary block mt-8 mb-4 text-[2rem] font-bold text-center"
+      className="text-primary block mt-8 mb-4 text-[2rem] lg:text-[3.5rem] font-bold text-center"
     >
       llcomment
     </Link>
