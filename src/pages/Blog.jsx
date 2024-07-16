@@ -4,9 +4,10 @@ import Search from "../common/Search";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetchData from "../hooks/useFetchData";
+import ButtonBackPage from "../common/ButtonBackPage";
 
 const Blog = () => {
-  const { data, error } = useFetchData("http://localhost:3000");
+  const { data, error } = useFetchData("http://localhost:3000/");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -33,7 +34,7 @@ const Blog = () => {
         <h2 className="text-primary px-10 font-semibold text-[1.2rem] flex justify-start">
           Artículos recientes
         </h2>
-        <article className="px-10 pb-32 flex justify-center flex-wrap">
+        <article className="px-10 pb-16 flex justify-center flex-wrap">
           {loading ? (
             <p>Cargando...</p>
           ) : (
@@ -45,27 +46,31 @@ const Blog = () => {
               >
                 <div>
                   <h3 className="font-bold text-[1.3rem] text-primary">
-                    {item.title}
+                    {item.detail.title}
                   </h3>
                   <p className="text-grayLight font-normal mt-1 mb-3">
-                    {item.description}
+                    {item.detail.description}
                   </p>
                 </div>
 
                 <section className="w-full flex gap-2 flex-wrap">
-                  {item.tags.map((tag, index) => (
-                    <span
-                      className="text-[.85rem] font-light block border border-primary text-primary rounded-full px-3 py-1 hover:text-white hover:bg-primary transform duration-300"
-                      key={`${item.id}-${index}`}
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  {item.detail.tags &&
+                    item.detail.tags.map((tag, index) => (
+                      <span
+                        className="text-[.85rem] font-light block border border-primary text-primary rounded-full px-3 py-1 hover:text-white hover:bg-primary transform duration-300"
+                        key={`${item.id}-${index}`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
                 </section>
               </article>
             ))
           )}
         </article>
+        <div className="flex justify-center pb-10">
+          <ButtonBackPage />
+        </div>
       </main>
     </>
   );
