@@ -9,7 +9,7 @@ const Initial = () => {
   return (
     <>
     <MenuMobile />
-    <main className="mt-20">
+    <main className="mt-20 lg:mx-[10rem]">
       <section className="pb-10 px-5">
         <Logo />
         <p className="text-center text-grayLight">
