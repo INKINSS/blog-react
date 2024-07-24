@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MdArrowBackIos } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const MenuMobile = () => {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -9,24 +10,24 @@ const MenuMobile = () => {
   };
 
   const itemMenu = [
-    "inicio",
-    "Colabora",
-    "Descubre",
-    "sobre nosotros",
-    "GitHub",
+    { name: "inicio", url: "/" },
+    { name: "Colabora", url: "/collaborate" },
+    { name: "Descubre", url: "/blog" },
+    { name: "sobre nosotros", url: "/sobre-nosotros" },
+    { name: "GitHub", url: "https://github.com/INKINSS" },
   ];
 
   return (
     <header className="relative">
       <nav
         className={`fixed top-0 z-10 right-0 w-full h-full bg-white transform transition-transform duration-300 ease-in-out ${
-          menuVisible ? "translate-x-[20%]" : "translate-x-full"
+          menuVisible ? "sm:translate-x-[20%] lg:translate-x-[65%] md:translate-x-[50%]" : "translate-x-full"
         }`}
       >
         <ul className="pt-14">
           {itemMenu.map((item) => (
-            <li className="py-2 px-10" key={item}>
-              {item}
+            <li key={item.name} className="py-2 px-10">
+              <Link className="hover:text-primary text-grayLight sm:text-[1.2rem] lg:text-[1.3rem]" to={item.url}>{item.name}</Link>
             </li>
           ))}
         </ul>

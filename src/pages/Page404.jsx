@@ -3,7 +3,7 @@ import ButtonBackPage from "../common/ButtonBackPage";
 const Page404 = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <article className="shadow-card rounded-lg py-6 px-5 mt-10 w-[14rem] max-w-[15rem] md:w-1/3 lg:w-1/4 xl:w-1/5 mx-5 hover:shadow-hoverCard transform duration-300 cursor-pointer mb-10">
+      <article className="shadow-card rounded-lg py-6 px-5 mt-10 w-[14rem] max-w-[15rem] md:w-1/3 lg:w-1/4 xl:w-1/5 mx-5 hover:shadow-hoverCard transform duration-300 mb-10">
         <div>
           <h3 className="font-bold text-[1.3rem] text-primary">
             ¿Qué significa el error 404?
