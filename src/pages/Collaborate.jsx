@@ -3,7 +3,9 @@ import Logo from "../common/Logo";
 import MenuMobile from "../common/MenuMobile";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import Textarea from "@mui/joy/Textarea";
 import Divider from "@mui/material/Divider";
+import FadeModalDialog from "../common/FadeModalDialog";
 
 const Collaborate = () => {
   const [formData, setFormData] = useState({
@@ -24,6 +26,10 @@ const Collaborate = () => {
     content_4: "",
     conclution: "",
   });
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPublic, setIsPublic] = useState(false);
+  const [articleId, setArticleId] = useState(null);
 
   const handleTagsChange = (e) => {
     const tagsArray = e.target.value.split(",").map((tag) => tag.trim());
@@ -66,11 +72,17 @@ const Collaborate = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        setArticleId(data.id); // Suponiendo que el ID del artículo está en data.id
+        setIsModalOpen(true);
+        setIsPublic(true);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -154,11 +166,10 @@ const Collaborate = () => {
               <label className="text-primary text-[.8rem] block font-semibold">
                 Descripción
               </label>
-              <TextField
+              <Textarea
                 placeholder="Describe tu artículo en unas pocas líneas"
-                fullWidth
                 label="Breve descripción"
-                rows={4}
+                minRows={1}
                 variant="outlined"
                 name="description"
                 value={formData.description}
@@ -169,11 +180,10 @@ const Collaborate = () => {
               <label className="text-primary text-[.8rem] block font-semibold">
                 Introducción
               </label>
-              <TextField
+              <Textarea
                 placeholder="Añade una introducción detallada acerca de tu artículo"
-                fullWidth
-                label="Breve descripción"
-                rows={4}
+                label="Introducción"
+                minRows={4}
                 variant="outlined"
                 name="introduction"
                 value={formData.introduction}
@@ -187,7 +197,7 @@ const Collaborate = () => {
               <TextField
                 placeholder="'node', 'javascript', 'express'"
                 fullWidth
-                label="Breve descripción"
+                label="Añade etiquetas para tu artículo"
                 rows={4}
                 variant="outlined"
                 name="tags"
@@ -212,11 +222,9 @@ const Collaborate = () => {
                 value={formData.title_content_1}
                 onChange={handleInputChange}
               />
-              <TextField
-                placeholder="Primer párrafo"
-                fullWidth
-                label="Breve descripción"
-                rows={4}
+              <Textarea
+                placeholder="Primer contenido"
+                minRows={6}
                 variant="outlined"
                 name="content_1"
                 value={formData.content_1}
@@ -234,11 +242,9 @@ const Collaborate = () => {
                 value={formData.title_content_2}
                 onChange={handleInputChange}
               />
-              <TextField
+              <Textarea
                 placeholder="Segundo párrafo"
-                fullWidth
-                label="Breve descripción"
-                rows={4}
+                minRows={6}
                 variant="outlined"
                 name="content_2"
                 value={formData.content_2}
@@ -256,11 +262,9 @@ const Collaborate = () => {
                 value={formData.title_content_3}
                 onChange={handleInputChange}
               />
-              <TextField
+              <Textarea
                 placeholder="Tercer párrafo"
-                fullWidth
-                label="Breve descripción"
-                rows={4}
+                minRows={6}
                 variant="outlined"
                 name="content_3"
                 value={formData.content_3}
@@ -278,11 +282,9 @@ const Collaborate = () => {
                 value={formData.title_content_4}
                 onChange={handleInputChange}
               />
-              <TextField
+              <Textarea
                 placeholder="Cuarto párrafo"
-                fullWidth
-                label="Breve descripción"
-                rows={4}
+                minRows={6}
                 variant="outlined"
                 name="content_4"
                 value={formData.content_4}
@@ -297,11 +299,9 @@ const Collaborate = () => {
               <span className="block text-grayLight">
                 Añade una conclusión detallada acerca de tu artículo.
               </span>
-              <TextField
+              <Textarea
                 placeholder="Conclusión"
-                fullWidth
-                label="Breve descripción"
-                rows={4}
+                minRows={4}
                 variant="outlined"
                 name="conclution"
                 value={formData.conclution}
@@ -313,10 +313,13 @@ const Collaborate = () => {
             type="submit"
             className="w-full py-3 text-primary hover:text-white border-2 border-primary hover:bg-primary transform duration-200 rounded-md my-10"
           >
-            Publicar
+            {isPublic ? 'publicado' : 'publicar'}
           </button>
         </form>
       </main>
+      {isModalOpen && (
+        <FadeModalDialog open={isModalOpen} articleId={articleId} handleClose={handleCloseModal} />
+      )}
     </>
   );
 };
