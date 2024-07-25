@@ -31,6 +31,8 @@ const Collaborate = () => {
   const [isPublic, setIsPublic] = useState(false);
   const [articleId, setArticleId] = useState(null);
 
+  const url = import.meta.evn.VITE_URL_BACKEND
+
   const handleTagsChange = (e) => {
     const tagsArray = e.target.value.split(",").map((tag) => tag.trim());
     setFormData((prevData) => ({
@@ -58,7 +60,7 @@ const Collaborate = () => {
     e.preventDefault();
     console.log(formData);
 
-    fetch("http://localhost:3000", {
+    fetch(`${url}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,7 +74,7 @@ const Collaborate = () => {
         return res.json();
       })
       .then((data) => {
-        setArticleId(data.id); // Suponiendo que el ID del artículo está en data.id
+        setArticleId(data.id);
         setIsModalOpen(true);
         setIsPublic(true);
       })

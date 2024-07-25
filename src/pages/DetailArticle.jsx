@@ -6,8 +6,11 @@ import { formatDate } from "../utils/formatDate";
 import { useParams } from "react-router-dom";
 
 const DetailArticle = () => {
+
+  const url = import.meta.env.VITE_URL_BACKEND
+
   const { id } = useParams();
-  const { data, error } = useFetchData(`http://localhost:3000/article/${id}`);
+  const { data, error } = useFetchData(`${url}article/${id}`);
 
   if (error) {
     return <div>Error, pagina no encontrada: {error.message}</div>;

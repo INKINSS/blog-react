@@ -7,7 +7,10 @@ import useFetchData from "../hooks/useFetchData";
 import ButtonBackPage from "../common/ButtonBackPage";
 
 const Blog = () => {
-  const { data, error } = useFetchData("http://localhost:3000/");
+
+  const url = import.meta.env.VITE_URL_BACKEND
+
+  const { data, error } = useFetchData(`${url}`);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
