@@ -2,8 +2,6 @@
 import { Transition } from "react-transition-group";
 import Modal from "@mui/joy/Modal";
 import ModalDialog from "@mui/joy/ModalDialog";
-import DialogTitle from "@mui/joy/DialogTitle";
-import DialogContent from "@mui/joy/DialogContent";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
@@ -50,7 +48,7 @@ export default function FadeModalDialog({ open, handleClose, articleId }) {
             </span>
             <div className="flex justify-center">
             <Link
-              className="border-2 max-w-[8rem] text-center border-primary rounded-full text-primary font-normal text-[1rem] py-1 px-3"
+              className="border-2 max-w-[8rem] text-center border-primary rounded-full text-primary font-normal text-[1rem] py-1 px-3 hover:bg-primary hover:text-white transform duration-150"
               to={`/article/${articleId}`}
             >
               ver articulo

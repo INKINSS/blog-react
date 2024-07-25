@@ -113,6 +113,7 @@ const Collaborate = () => {
             <TextField
               className="w-[10rem]"
               fullWidth
+              required
               id="outlined-basic"
               label="Nombre y apellido"
               variant="outlined"
@@ -123,6 +124,7 @@ const Collaborate = () => {
             <TextField
               className="w-[10rem]"
               fullWidth
+              required
               id="outlined-basic"
               label="Nickname"
               variant="outlined"
@@ -136,6 +138,7 @@ const Collaborate = () => {
               Fecha de publicación
             </span>
             <input
+              required
               type="date"
               name="publishDate"
               value={formData.publishDate}
@@ -155,6 +158,7 @@ const Collaborate = () => {
             <TextField
               className="w-[10rem]"
               fullWidth
+              required
               id="outlined-basic"
               label="Título principal"
               variant="outlined"
@@ -167,6 +171,7 @@ const Collaborate = () => {
                 Descripción
               </label>
               <Textarea
+                required
                 placeholder="Describe tu artículo en unas pocas líneas"
                 label="Breve descripción"
                 minRows={1}
@@ -181,6 +186,7 @@ const Collaborate = () => {
                 Introducción
               </label>
               <Textarea
+                required
                 placeholder="Añade una introducción detallada acerca de tu artículo"
                 label="Introducción"
                 minRows={4}
@@ -195,6 +201,7 @@ const Collaborate = () => {
                 Etiquetas
               </label>
               <TextField
+                required
                 placeholder="'node', 'javascript', 'express'"
                 fullWidth
                 label="Añade etiquetas para tu artículo"
@@ -214,6 +221,7 @@ const Collaborate = () => {
                 partes importantes
               </span>
               <TextField
+                required
                 fullWidth
                 label="Primer subtítulo"
                 rows={4}
@@ -223,6 +231,7 @@ const Collaborate = () => {
                 onChange={handleInputChange}
               />
               <Textarea
+                required
                 placeholder="Primer contenido"
                 minRows={6}
                 variant="outlined"
@@ -234,6 +243,7 @@ const Collaborate = () => {
             <Divider />
             <div className="flex flex-col gap-2">
               <TextField
+                required
                 fullWidth
                 label="Segundo subtítulo"
                 rows={4}
@@ -243,6 +253,7 @@ const Collaborate = () => {
                 onChange={handleInputChange}
               />
               <Textarea
+                required
                 placeholder="Segundo párrafo"
                 minRows={6}
                 variant="outlined"
@@ -254,6 +265,7 @@ const Collaborate = () => {
             <Divider />
             <div className="flex flex-col gap-2">
               <TextField
+                required
                 fullWidth
                 label="Tercer subtítulo"
                 rows={4}
@@ -263,6 +275,7 @@ const Collaborate = () => {
                 onChange={handleInputChange}
               />
               <Textarea
+                required
                 placeholder="Tercer párrafo"
                 minRows={6}
                 variant="outlined"
@@ -274,6 +287,7 @@ const Collaborate = () => {
             <Divider />
             <div className="flex flex-col gap-2">
               <TextField
+                required
                 fullWidth
                 label="Cuarto subtítulo"
                 rows={4}
@@ -283,6 +297,7 @@ const Collaborate = () => {
                 onChange={handleInputChange}
               />
               <Textarea
+                required
                 placeholder="Cuarto párrafo"
                 minRows={6}
                 variant="outlined"
@@ -300,6 +315,7 @@ const Collaborate = () => {
                 Añade una conclusión detallada acerca de tu artículo.
               </span>
               <Textarea
+                required
                 placeholder="Conclusión"
                 minRows={4}
                 variant="outlined"
@@ -313,12 +329,16 @@ const Collaborate = () => {
             type="submit"
             className="w-full py-3 text-primary hover:text-white border-2 border-primary hover:bg-primary transform duration-200 rounded-md my-10"
           >
-            {isPublic ? 'publicado' : 'publicar'}
+            {isPublic ? "publicado" : "publicar"}
           </button>
         </form>
       </main>
       {isModalOpen && (
-        <FadeModalDialog open={isModalOpen} articleId={articleId} handleClose={handleCloseModal} />
+        <FadeModalDialog
+          open={isModalOpen}
+          articleId={articleId}
+          handleClose={handleCloseModal}
+        />
       )}
     </>
   );
