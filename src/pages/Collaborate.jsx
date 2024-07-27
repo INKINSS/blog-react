@@ -31,7 +31,7 @@ const Collaborate = () => {
   const [isPublic, setIsPublic] = useState(false);
   const [articleId, setArticleId] = useState(null);
 
-  const url = import.meta.evn.VITE_URL_BACKEND;
+  const url = import.meta.env.VITE_URL_BACKEND;
 
   const handleTagsChange = (e) => {
     const tagsArray = e.target.value.split(",").map((tag) => tag.trim());
