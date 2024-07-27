@@ -7,16 +7,23 @@ import useFetchData from "../hooks/useFetchData";
 import ButtonBackPage from "../common/ButtonBackPage";
 
 const Blog = () => {
-
-  const url = import.meta.env.VITE_URL_BACKEND
-
+  const url = import.meta.env.VITE_URL_BACKEND;
   const { data, error } = useFetchData(`${url}`);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [storedData, setStoredData] = useState(null);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("blogData");
+    if (storedData) {
+      setStoredData(JSON.parse(storedData));
+    }
+  }, []);
 
   useEffect(() => {
     if (data) {
       setLoading(false);
+      localStorage.setItem("blogData", JSON.stringify(data));
     }
   }, [data]);
 
@@ -41,7 +48,7 @@ const Blog = () => {
           {loading ? (
             <p>Cargando...</p>
           ) : (
-            data.map((item) => (
+            (storedData || data).map((item) => (
               <article
                 className="shadow-card rounded-lg py-6 px-5 mt-10 w-[14rem] max-w-[15rem] md:w-1/3 lg:w-1/4 xl:w-1/5 mx-5 hover:shadow-hoverCard transform duration-300 cursor-pointer"
                 key={item.id}
