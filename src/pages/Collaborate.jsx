@@ -27,6 +27,25 @@ const Collaborate = () => {
     conclution: "",
   });
 
+  const initialFormData = {
+    username: "",
+    nickname: "",
+    publishDate: "",
+    title: "",
+    description: "",
+    introduction: "",
+    tags: [],
+    title_content_1: "",
+    content_1: "",
+    title_content_2: "",
+    content_2: "",
+    title_content_3: "",
+    content_3: "",
+    title_content_4: "",
+    content_4: "",
+    conclution: "",
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
   const [articleId, setArticleId] = useState(null);
@@ -77,6 +96,7 @@ const Collaborate = () => {
         setArticleId(data.id);
         setIsModalOpen(true);
         setIsPublic(true);
+        setFormData(initialFormData);
       })
       .catch((error) => {
         console.error("Error:", error);
