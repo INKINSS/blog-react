@@ -24,6 +24,7 @@ const DetailArticle = () => {
       <MenuMobile />
       <Logo />
       <div className="lg:px-[20rem] ssm:px-[3rem]">
+        <h1 className="text-primary text-[2rem] text-center font-bold">{data.detail.title}</h1>
         <p className="text-grayLight text-[1.1rem] mt-10">
           {data.detail.introduction}
         </p>
