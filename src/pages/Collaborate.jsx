@@ -90,7 +90,7 @@ const Collaborate = () => {
   return (
     <>
       <MenuMobile />
-      <main className="mt-20 lg:px-[20rem] mb-10">
+      <main className="mt-20 lg:px-[20rem] mb-10 px-7">
         <Logo />
         <p className="text-grayLight text-[1rem] text-center">
           Si estás interesado en compartir tus conocimientos, puedes hacerlo

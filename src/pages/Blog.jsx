@@ -3,29 +3,31 @@ import Logo from "../common/Logo";
 import Search from "../common/Search";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useFetchData from "../hooks/useFetchData";
 import ButtonBackPage from "../common/ButtonBackPage";
 
 const Blog = () => {
   const url = import.meta.env.VITE_URL_BACKEND;
-  const { data, error } = useFetchData(`${url}`);
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const [storedData, setStoredData] = useState(null);
 
   useEffect(() => {
-    const storedData = localStorage.getItem("blogData");
-    if (storedData) {
-      setStoredData(JSON.parse(storedData));
-    }
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const result = await response.json();
+        setData(result);
+        localStorage.setItem("blogData", JSON.stringify(result));
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  useEffect(() => {
-    if (data) {
-      setLoading(false);
-      localStorage.setItem("blogData", JSON.stringify(data));
-    }
-  }, [data]);
+    fetchData();
+  }, [url]);
 
   const handleArticleClick = (id) => {
     navigate(`/article/${id}`);
@@ -48,7 +50,7 @@ const Blog = () => {
           {loading ? (
             <p>Cargando...</p>
           ) : (
-            (storedData || data).map((item) => (
+            data.map((item) => (
               <article
                 className="shadow-card rounded-lg py-6 px-5 mt-10 w-[14rem] max-w-[15rem] md:w-1/3 lg:w-1/4 xl:w-1/5 mx-5 hover:shadow-hoverCard transform duration-300 cursor-pointer"
                 key={item.id}
