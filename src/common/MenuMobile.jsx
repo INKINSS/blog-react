@@ -13,7 +13,6 @@ const MenuMobile = () => {
     { name: "inicio", url: "/" },
     { name: "Colabora", url: "/collaborate" },
     { name: "Descubre", url: "/blog" },
-    { name: "sobre nosotros", url: "/sobre-nosotros" },
     { name: "GitHub", url: "https://github.com/INKINSS" },
   ];
 
